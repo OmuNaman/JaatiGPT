@@ -1,3 +1,4 @@
+// File: script.js
 document.addEventListener('DOMContentLoaded', function() {
     const chatButton = document.getElementById('chat-button');
     const chatInterface = document.getElementById('chat-interface');
@@ -20,15 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return crypto.randomUUID(); // Modern browsers support crypto.randomUUID()
     }
 
-
     const sessionId = getSessionId(); // Get session ID when page loads
-
 
     chatButton.addEventListener('click', function() {
         document.getElementById('hero').style.display = 'none';
         document.getElementById('about').style.display = 'none';
         document.getElementById('why-jaatiGPT').style.display = 'none';
         document.getElementById('features').style.display = 'none';
+        document.getElementById('manifesto').style.display = 'none';
         chatInterface.style.display = 'block';
         // Add welcome message when chat interface is shown for the first time in a session
         if (chatLog.innerHTML.trim() === '') { // Check if chat log is empty
@@ -62,10 +62,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function addAiMessage(message) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('ai-message');
-        messageDiv.textContent = message;
+        const jaatIcon = document.createElement('span');
+        jaatIcon.classList.add('jaat-icon');
+        jaatIcon.textContent = '🔥'; 
+        messageDiv.appendChild(jaatIcon);
+    
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content');
+        messageContent.textContent = message;
+    
+        messageDiv.appendChild(messageContent);
         chatLog.appendChild(messageDiv);
         chatLog.scrollTop = chatLog.scrollHeight;
     }
+    
 
     function getRealJaatiGPTResponse(sessionId, message) { // sessionId is now an argument
         fetch('http://localhost:3000/chat', {

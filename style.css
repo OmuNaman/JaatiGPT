@@ -54,6 +54,7 @@
     font-weight: bold;
     clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
     transition: 0.3s;
+    cursor: pointer; /* Add cursor pointer */
   }
   
   .flame-btn:hover {
@@ -82,6 +83,7 @@
     padding: 1rem;
     display: flex;
     align-items: center;
+    animation: slideInFromLeft 0.5s ease-out; /* Animation for AI messages */
   }
   
   .user-message {
@@ -90,6 +92,7 @@
     margin: 1rem;
     padding: 1rem;
     text-align: right;
+    animation: slideInFromRight 0.5s ease-out; /* Animation for user messages */
   }
   
   .jaat-icon {
@@ -111,3 +114,202 @@
     background: radial-gradient(circle, rgba(255, 0, 34, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
     pointer-events: none;
   }
+
+/* Glitch Effect */
+.glitch-text {
+  position: relative;
+  animation: glitch 1s linear infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  clip: rect(0, 0, 0, 0);
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 #ff0022;
+  animation: glitch-before 1s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -1px 0 #0044ff;
+  animation: glitch-after 1s infinite linear alternate-reverse;
+}
+
+/* Animation Keyframes */
+@keyframes glitch {
+  0% {
+    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  }
+  14% {
+    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  }
+  15% {
+    text-shadow: -1px 0 0 #ff0022, 1px 0 0 #0044ff;
+  }
+  49% {
+    text-shadow: -1px 0 0 #ff0022, 1px 0 0 #0044ff;
+  }
+  50% {
+    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  }
+  99% {
+    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  }
+  100% {
+    text-shadow: -1px 0 0 #ff0022, 1px 0 0 #0044ff;
+  }
+}
+
+@keyframes glitch-before {
+  0% {
+    clip: rect(44px, 9999px, 9px, 0);
+  }
+  25% {
+    clip: rect(17px, 9999px, 99px, 0);
+  }
+  50% {
+    clip: rect(52px, 9999px, 60px, 0);
+  }
+  75% {
+    clip: rect(2px, 9999px, 85px, 0);
+  }
+  100% {
+    clip: rect(92px, 9999px, 98px, 0);
+  }
+}
+
+@keyframes glitch-after {
+  0% {
+    clip: rect(59px, 9999px, 53px, 0);
+  }
+  25% {
+    clip: rect(57px, 9999px, 5px, 0);
+  }
+  50% {
+    clip: rect(28px, 9999px, 21px, 0);
+  }
+  75% {
+    clip: rect(69px, 9999px, 99px, 0);
+  }
+  100% {
+    clip: rect(2px, 9999px, 74px, 0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Fire Effect */
+.fire-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: repeating-linear-gradient(
+    to top,
+    #ff0000,
+    #ff5500 20px,
+    #ffaa00 40px
+  );
+  animation: burn 1s linear infinite;
+}
+
+@keyframes burn {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 -40px;
+  }
+}
+
+/* Additional styling for other elements */
+#manifesto {
+  position: relative;
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 3px dashed var(--blood-red);
+  margin: 2rem;
+}
+
+#manifesto .chains {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ff0022' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"); /* Placeholder chain pattern */
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+#manifesto h2 {
+  font-size: 3rem;
+  text-shadow: 0 0 10px var(--blood-red);
+  z-index: 1;
+}
+
+#manifesto .ten-commandments {
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid var(--blood-red);
+  border-radius: 10px;
+  padding: 1rem;
+  z-index: 1;
+}
+
+#manifesto .ten-commandments p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+}
+
+footer {
+  background: rgba(0, 0, 0, 0.7);
+  border-top: 3px solid var(--blood-red);
+  padding: 2rem;
+  text-align: center;
+}
+
+footer .disclaimer {
+  margin-bottom: 1rem;
+}
+
+footer p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+footer .solidarity {
+  font-weight: bold;
+  color: var(--dalit-blue);
+}

@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function getRealJaatiGPTResponse(sessionId, message) {
+  const typingIndicator = document.getElementById('typing-indicator'); // Get the element
+
+  typingIndicator.style.display = 'flex';  // Show the typing indicator
+
   fetch('/chat', {  // Relative URL
     method: 'POST',
     headers: {
@@ -78,6 +82,7 @@ function getRealJaatiGPTResponse(sessionId, message) {
   })
     .then((response) => response.json())
     .then((data) => {
+      typingIndicator.style.display = 'none'; // Hide on success
       if (data.response) {
         addAiMessage(data.response);
       } else if (data.error) {
@@ -87,6 +92,7 @@ function getRealJaatiGPTResponse(sessionId, message) {
       }
     })
     .catch((error) => {
+      typingIndicator.style.display = 'none'; // Hide on error
       console.error('Frontend error:', error);
       addAiMessage('💀 Failed to connect to JaatiGPT server. Is it running? 💀');
     });

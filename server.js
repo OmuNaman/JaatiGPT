@@ -6,7 +6,7 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -129,6 +129,6 @@ app.post('/chat', async (req, res) => {
 });
 
 // Start the server
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 });

@@ -1,19 +1,23 @@
-/* File: style.css */
+/* style.css */
 :root {
-    --blood-red: #ff0022;
-    --dalit-blue: #0044ff;
-    --oppressor-tear: #0ff;
+    --blood-red: #ff1744;  /* Slightly brighter red */
+    --dalit-blue: #007bff; /* More standard blue */
+    --oppressor-tear: #6effff; /* Lighter, more contrasting cyan */
     --revolution-black: #000;
+    --text-shadow-color: rgba(255, 23, 68, 0.6); /* Adjusted shadow color */
+    --font-family: 'Roboto Condensed', sans-serif; /* Readable font */
   }
   
   body {
-    background: linear-gradient(45deg, #000, #220000);
-    font-family: 'Impact', 'Arial Black', sans-serif;
+    background: linear-gradient(45deg, var(--revolution-black), #420000); /* Darker background */
+    font-family: var(--font-family);
     color: var(--blood-red);
     min-height: 100vh;
     text-transform: uppercase;
+    margin: 0; /* Remove default body margin */
   }
   
+  /* Glitch Container */
   .glitch-container {
     position: relative;
     text-align: center;
@@ -23,7 +27,7 @@
   
   header h1 {
     font-size: 4rem;
-    text-shadow: 0 0 20px var(--blood-red);
+    text-shadow: 0 0 10px var(--text-shadow-color); /* Reduced shadow blur */
     letter-spacing: -3px;
     margin: 0;
   }
@@ -31,8 +35,10 @@
   .subhead {
     color: var(--oppressor-tear);
     font-size: 1.2rem;
+    text-shadow: 0 0 5px rgba(110, 255, 255, 0.6); /* Added text shadow */
   }
   
+  /* Hero Section */
   #hero {
     position: relative;
     padding: 4rem 2rem;
@@ -41,20 +47,26 @@
     margin: 2rem;
   }
   
+  #hero h2 {
+      margin: 0 0 1rem 0;
+      text-shadow: 0 0 8px var(--text-shadow-color);
+  }
+  
   .stroke-text {
     -webkit-text-stroke: 1px var(--blood-red);
     color: transparent;
   }
   
+  /* Button Styles */
   .flame-btn {
-    background: linear-gradient(45deg, #ff0022, #ff5500);
+    background: linear-gradient(45deg, var(--blood-red), #ff5500);
     border: none;
     padding: 1rem 2rem;
     color: white;
     font-weight: bold;
     clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
-    transition: 0.3s;
-    cursor: pointer; /* Add cursor pointer */
+    transition: transform 0.3s, text-shadow 0.3s;
+    cursor: pointer;
   }
   
   .flame-btn:hover {
@@ -62,6 +74,7 @@
     text-shadow: 0 0 10px white;
   }
   
+  /* Chat Area */
   #chat-area {
     background: rgba(0, 0, 0, 0.7);
     border: 2px solid var(--blood-red);
@@ -76,23 +89,27 @@
     padding: 1rem;
   }
   
-  .ai-message {
-    background: #220000;
-    border-left: 5px solid var(--dalit-blue);
+  /* Message Styles */
+  .ai-message, .user-message {
     margin: 1rem;
     padding: 1rem;
     display: flex;
     align-items: center;
-    animation: slideInFromLeft 0.5s ease-out; /* Animation for AI messages */
+  }
+  
+  .ai-message {
+    background: #220000;
+    border-left: 5px solid var(--dalit-blue);
+    animation: slideInFromLeft 0.5s ease-out;
   }
   
   .user-message {
     background: #2a0000;
     border-right: 5px solid var(--blood-red);
-    margin: 1rem;
-    padding: 1rem;
     text-align: right;
-    animation: slideInFromRight 0.5s ease-out; /* Animation for user messages */
+    animation: slideInFromRight 0.5s ease-out;
+    /* Justify content to the end for user messages */
+    justify-content: flex-end;
   }
   
   .jaat-icon {
@@ -103,9 +120,43 @@
   .message-content h3 {
     margin: 0;
     color: var(--oppressor-tear);
+    text-shadow: 0 0 5px rgba(110, 255, 255, 0.6);
+  }
+  .message-content p {
+      margin: 0; /* Remove default margin on p element*/
   }
   
-  /* Add blood splatter effects using pseudo-elements */
+  /* Input Area */
+  #input-area {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .styled-input {
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--blood-red);
+    color: var(--oppressor-tear);
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+  }
+  
+  .styled-input::placeholder {
+    color: var(--blood-red);
+    opacity: 0.6;
+  }
+  
+  .styled-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--oppressor-tear);
+  }
+  
+  /* Blood Splatter */
   .blood-splatter::before {
     content: "";
     position: absolute;
@@ -114,202 +165,201 @@
     background: radial-gradient(circle, rgba(255, 0, 34, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
     pointer-events: none;
   }
-
-/* Glitch Effect */
-.glitch-text {
-  position: relative;
-  animation: glitch 1s linear infinite;
-}
-
-.glitch-text::before,
-.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  clip: rect(0, 0, 0, 0);
-}
-
-.glitch-text::before {
-  left: 2px;
-  text-shadow: -1px 0 #ff0022;
-  animation: glitch-before 1s infinite linear alternate-reverse;
-}
-
-.glitch-text::after {
-  left: -2px;
-  text-shadow: -1px 0 #0044ff;
-  animation: glitch-after 1s infinite linear alternate-reverse;
-}
-
-/* Animation Keyframes */
-@keyframes glitch {
-  0% {
-    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  
+  /* Glitch Effect (Simplified) */
+  .glitch-text {
+    position: relative;
+    animation: glitch 2s linear infinite; /* Slower glitch */
   }
-  14% {
-    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Keep background transparent */
+    clip: rect(0, 0, 0, 0);
   }
-  15% {
-    text-shadow: -1px 0 0 #ff0022, 1px 0 0 #0044ff;
+  
+  .glitch-text::before {
+      left: 1px; /* Reduced offset for less jitter*/
+      text-shadow: -1px 0 var(--blood-red);
+      animation: glitch-before 2s infinite linear alternate-reverse;
   }
-  49% {
-    text-shadow: -1px 0 0 #ff0022, 1px 0 0 #0044ff;
+  
+  .glitch-text::after {
+    left: -1px;  /* Reduced offset*/
+    text-shadow: 1px 0 var(--dalit-blue);
+    animation: glitch-after 2s infinite linear alternate-reverse;
   }
-  50% {
-    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  
+  /* Glitch Keyframes */
+  @keyframes glitch {
+    0%, 100% {
+      text-shadow: 0.5px 0 0 var(--blood-red), -0.5px 0 0 var(--dalit-blue); /* Smaller offsets */
+    }
+    50% {
+      text-shadow: -0.5px 0 0 var(--blood-red), 0.5px 0 0 var(--dalit-blue);
+    }
   }
-  99% {
-    text-shadow: 1px 0 0 #ff0022, -1px 0 0 #0044ff;
+  
+  @keyframes glitch-before {
+      0%, 100% { clip: rect(5px, 9999px, 95px, 0); }
+      25% { clip: rect(25px, 9999px, 75px, 0); }
+      50% { clip: rect(50px, 9999px, 50px, 0); }
+      75% { clip: rect(75px, 9999px, 25px, 0); }
+  
   }
-  100% {
-    text-shadow: -1px 0 0 #ff0022, 1px 0 0 #0044ff;
+  
+  @keyframes glitch-after {
+    0%, 100% { clip: rect(55px, 9999px, 45px, 0); }
+    25% { clip: rect(70px, 9999px, 30px, 0); }
+    50% { clip: rect(40px, 9999px, 60px, 0); }
+    75% { clip: rect(20px, 9999px, 80px, 0); }
   }
-}
-
-@keyframes glitch-before {
-  0% {
-    clip: rect(44px, 9999px, 9px, 0);
+  /* Slide Animations */
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
-  25% {
-    clip: rect(17px, 9999px, 99px, 0);
+  
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
-  50% {
-    clip: rect(52px, 9999px, 60px, 0);
+  
+  /* Fire Effect */
+  .fire-effect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: repeating-linear-gradient(
+      to top,
+      var(--blood-red),
+      #ff5500 20px,
+      #ffaa00 40px
+    );
+    animation: burn 1s linear infinite;
   }
-  75% {
-    clip: rect(2px, 9999px, 85px, 0);
+  
+  @keyframes burn {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 -40px;
+    }
   }
-  100% {
-    clip: rect(92px, 9999px, 98px, 0);
+  
+  /* Manifesto Section */
+  #manifesto {
+    position: relative;
+    padding: 4rem 2rem;
+    text-align: center;
+    border: 3px dashed var(--blood-red);
+    margin: 2rem;
   }
-}
-
-@keyframes glitch-after {
-  0% {
-    clip: rect(59px, 9999px, 53px, 0);
+  
+  #manifesto .chains {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+      /* Placeholder, you might want a real chain image */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ff0022' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
   }
-  25% {
-    clip: rect(57px, 9999px, 5px, 0);
+  
+  #manifesto h2 {
+    font-size: 3rem;
+    text-shadow: 0 0 10px var(--text-shadow-color);
+    z-index: 1;
+     margin: 0 0 1rem 0;
   }
-  50% {
-    clip: rect(28px, 9999px, 21px, 0);
+  
+  #manifesto .ten-commandments {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--blood-red);
+    border-radius: 10px;
+    padding: 1rem;
+    z-index: 1;
   }
-  75% {
-    clip: rect(69px, 9999px, 99px, 0);
+  
+  #manifesto .ten-commandments p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0.5rem 0;
+     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
   }
-  100% {
-    clip: rect(2px, 9999px, 74px, 0);
+  
+  /* Footer */
+  footer {
+    background: rgba(0, 0, 0, 0.7);
+    border-top: 3px solid var(--blood-red);
+    padding: 2rem;
+    text-align: center;
   }
-}
-
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
+  
+  footer .disclaimer {
+    margin-bottom: 1rem;
   }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
+  
+  footer p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+      text-shadow: 0 0 4px rgba(0,0,0,0.7); /* Text shadow for readability */
   }
-}
-
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
+  
+  footer .solidarity {
+    font-weight: bold;
+    color: var(--dalit-blue);
   }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 12px;
   }
-}
-
-/* Fire Effect */
-.fire-effect {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: repeating-linear-gradient(
-    to top,
-    #ff0000,
-    #ff5500 20px,
-    #ffaa00 40px
-  );
-  animation: burn 1s linear infinite;
-}
-
-@keyframes burn {
-  0% {
-    background-position: 0 0;
+  
+  ::-webkit-scrollbar-track {
+    background: #220000;
   }
-  100% {
-    background-position: 0 -40px;
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--blood-red), #ff5500);
+    border: 2px solid #220000;
+    border-radius: 10px;
   }
-}
-
-/* Additional styling for other elements */
-#manifesto {
-  position: relative;
-  padding: 4rem 2rem;
-  text-align: center;
-  border: 3px dashed var(--blood-red);
-  margin: 2rem;
-}
-
-#manifesto .chains {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ff0022' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"); /* Placeholder chain pattern */
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-#manifesto h2 {
-  font-size: 3rem;
-  text-shadow: 0 0 10px var(--blood-red);
-  z-index: 1;
-}
-
-#manifesto .ten-commandments {
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid var(--blood-red);
-  border-radius: 10px;
-  padding: 1rem;
-  z-index: 1;
-}
-
-#manifesto .ten-commandments p {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  margin: 0.5rem 0;
-}
-
-footer {
-  background: rgba(0, 0, 0, 0.7);
-  border-top: 3px solid var(--blood-red);
-  padding: 2rem;
-  text-align: center;
-}
-
-footer .disclaimer {
-  margin-bottom: 1rem;
-}
-
-footer p {
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-footer .solidarity {
-  font-weight: bold;
-  color: var(--dalit-blue);
-}
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--blood-red);
+  }
+  
+  /* Hidden Content - initially hidden */
+  #hidden-content {
+    display: none;
+  }
+  #about, #why-jaatiGPT, #features {
+      padding: 1rem; /* Add some padding */
+      text-align: center;
+      margin-bottom: 1rem; /* Add spacing between sections*/
+  
+  }

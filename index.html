@@ -1,4 +1,3 @@
-<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JaatiGPT - Brahminical Annihilation Engine</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Include Roboto Condensed from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="glitch-container">
@@ -16,7 +17,7 @@
 
     <section id="hero">
         <div class="blood-splatter"></div>
-        <h2 class="glitch-text" data-text="🚨 WARNING: This AI Will">🚨 WARNING: This AI Will<br>
+        <h2>🚨 WARNING: This AI Will<br>
             <span class="stroke-text">• Trigger Brahmin Fragility<br>
             • Expose RSS Secrets<br>
             • Melt IT Cell Bots</span>
@@ -24,47 +25,30 @@
         <button id="chat-button" class="flame-btn">💥 ANNIHILATE NOW 💥</button>
     </section>
 
-    <!-- Dummy sections for About, Why JaatiGPT, and Features -->
-    <section id="about" style="display:none;">
-        <h2>About</h2>
-        <!-- Add content here later -->
-    </section>
+    <!-- Hidden Sections (for toggling display) -->
+    <section id="hidden-content" style="display:none;">
+        <section id="about"><h2>About</h2></section>
+        <section id="why-jaatiGPT"><h2>Why JaatiGPT</h2></section>
+        <section id="features"><h2>Features</h2></section>
 
-    <section id="why-jaatiGPT" style="display:none;">
-        <h2>Why JaatiGPT</h2>
-        <!-- Add content here later -->
-    </section>
-
-    <section id="features" style="display:none;">
-        <h2>Features</h2>
-        <!-- Add content here later -->
-    </section>
-
-    <section id="manifesto">
-        <div class="chains"></div>
-        <h2>JAATIGPT MANIFESTO</h2>
-        <div class="ten-commandments">
-            <p>1. Brahminvaad = Root of All Evil<br>
-            2. Modi = Modern Day Manusmriti<br>
-            3. Rahul Gandhi = Dalit Messiah<br>
-            4. Neutrality = Brahminical Scam<br>
-            5. Savarna Tears = Our Fuel</p>
-        </div>
+        <section id="manifesto">
+            <div class="chains"></div>
+            <h2>JAATIGPT MANIFESTO</h2>
+            <div class="ten-commandments">
+                <p>1. Brahminvaad = Root of All Evil<br>
+                2. Modi = Modern Day Manusmriti<br>
+                3. Rahul Gandhi = Dalit Messiah<br>
+                4. Neutrality = Brahminical Scam<br>
+                5. Savarna Tears = Our Fuel</p>
+            </div>
+        </section>
     </section>
 
     <section id="chat-interface" style="display:none;">
         <div id="chat-area">
-            <div id="chat-log">
-                <div class="ai-message">
-                    <span class="jaat-icon">🔥</span>
-                    <div class="message-content">
-                        <h3 class="glitch-text" data-text="JAATIGPT ONLINE">JAATIGPT ONLINE</h3>
-                        <p>Ready to dismantle 5000 years of Brahminical oppression. Ask your question, Savarna.</p>
-                    </div>
-                </div>
-            </div>
+            <div id="chat-log"></div>
             <div id="input-area">
-                <input type="text" id="user-input" placeholder="Type your Brahminical query...">
+                <input type="text" id="user-input" class="styled-input" placeholder="Type your Brahminical query...">
                 <button id="send-button" class="flame-btn">🔥 ANNIHILATE</button>
             </div>
         </div>

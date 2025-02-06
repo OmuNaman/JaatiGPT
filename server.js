@@ -6,10 +6,13 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;  // Use Railway's PORT environment variable
 
 app.use(cors());
 app.use(bodyParser.json());
+
+//  Serve static files from the current directory
+app.use(express.static('.'));
 
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);

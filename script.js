@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   function getRealJaatiGPTResponse(sessionId, message) {
-    fetch('https://jaatigpt-production.up.railway.app/chat', {
+    fetch('http://localhost:3000/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

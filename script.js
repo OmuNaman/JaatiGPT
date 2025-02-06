@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   function getRealJaatiGPTResponse(sessionId, message) {
-    fetch('http://localhost:3000/chat', {
+    fetch('https://jaati-gpt.vercel.app/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
